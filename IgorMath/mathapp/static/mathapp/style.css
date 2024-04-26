@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#user_settings_input {
+    width: 50px;
+}
+
+#settings_list {
+    list-style-type: none;
+}
+
+#index_img {
+    max-width: 400px;
+    height: auto;
+    border: 5px solid #ddd;
+}
+
+.btn-primary {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}

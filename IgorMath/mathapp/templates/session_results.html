@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mathapp/style.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <img id="index_img" src="{% static index_image %}" alt="">
+    <table>
+        <tr>
+            <td>Всего примеров: </td>
+            <td>{{ total }}</td>
+        </tr>
+        <tr>
+            <td>Правильных ответов: </td>
+            <td>{{ correct_answers }}</td>
+        </tr>
+        <tr>
+            <td>Неправильных ответов: </td>
+            <td>{{ incorrect_answers }}</td>
+        </tr>
+    </table>
+    {% if correct_answers >= incorrect_answers %}
+        <h2>Молодец, Бублик!</h2>
+
+    {% else %}
+        <h2>Старайся, Бублик!</h2>
+    {% endif %}
+
+
+
+    <a href="{% url 'index' %}">Вернуться на главную</a>
+</body>
+</html>

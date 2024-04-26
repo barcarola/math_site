@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Решай примеры</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mathapp/style.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+
+    <div class="test1">
+        <form method=POST id="form2" name="form2">
+            {% csrf_token %}
+        <div>
+            <div >
+
+                <p>{% for key, value in ready_primer.items %}
+                    {% if key != 'result' %}
+                        {{ value }}
+                    {% else %}
+                    <span id="input_placeholder"><input type="text" id="Answer" name="user_answer" style="width: 50px; margin-right: 0.3rem"></span>
+
+                    {% endif %}
+                {% endfor %}
+                </p>
+            </div>
+            <div>
+                <p><button type="button" onclick="checkSolution()" class="btn btn-primary" id="checkAnswer" style="background-color: #d6dcf0; border-color: #9eacdc; color: black; ">Проверить</button></p>
+            </div>
+
+
+            <script> function checkSolution() {
+            document.getElementById("checkAnswer").remove();
+            const user_answer = document.getElementById("Answer");
+            const user_answer_value = document.getElementById("Answer").value;
+            const answer_input_field = document.getElementById("answer");
+            const new_div = document.createElement("div");
+            const new_p = document.createElement("p");
+            const input_placeholder = document.getElementById("input_placeholder");
+
+            let correctness = 0;
+
+            user_answer.remove()
+            const adding_text = document.createTextNode("{{ ready_primer.result }}")
+            input_placeholder.appendChild(adding_text);
+
+            if (user_answer_value == "{{ ready_primer.result }}") {
+                document.body.appendChild(new_div);
+                new_p.innerText = "Правильно!";
+                new_div.appendChild(new_p);
+                correctness = 'correct';
+            }
+            else {
+                document.body.appendChild(new_div);
+                new_p.innerText = 'Неправильно! Правильный ответ: {{ ready_primer.result }}';
+                new_div.appendChild(new_p);
+                correctness = 'incorrect';
+            };
+
+
+            const next_button = document.createElement("button");
+            next_button.type = "submit";
+            next_button.innerHTML = "Дальше";
+            next_button.addEventListener('click', () => {
+                document.location.href = "{% url 'register_solution' primer_type=primer_type result=12345 %}".replace(/12345/, correctness);
+                });
+            next_button.className = "btn btn-primary";
+            document.body.appendChild(next_button);
+            }
+        </script>
+
+        </div>
+    </form>
+    </div>
+</body>
+</html>

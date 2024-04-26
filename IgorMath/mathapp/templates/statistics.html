@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<div class="container row justify-content-center">
+    <div class="col-auto">
+    <table class="table table-condensed">
+        <dl>
+        <tr>
+            <td scope="row" class="col-m-6"><dt>Всего примеров</dt></td>
+            <td class="col-lg-6"><dt>{{total_correct|add:total_incorrect}}</dt></td>
+        </tr>
+        <tr>
+            <td><dd>Правильных</dd></td>
+            <td><dd>{{ total_correct }}</dd></td>
+        </tr>
+        <tr>
+            <td>Неправильных</td>
+            <td>{{ total_incorrect }}</td>
+        </tr>
+
+        {% if count10_correct %}
+        <tr>
+            <td><dt>Сложение до 10</dt></td>
+            <td><dt>{{ count10_correct|add:count10_incorrect}}</dt></td>
+        </tr>
+        <tr>
+            <td><dd>Правильных</dd></td>
+            <td>{{ count10_correct }}</td>
+        </tr>
+        <tr>
+            <td>Неправильных</td>
+            <td>{{ count10_incorrect }}</td>
+        </tr>
+        {% endif %}
+
+        {% if subtr10_correct %}
+        <tr>
+            <td><dt>Вычитание до 10</dt></td>
+            <td><dt>{{ subtr10_correct|add:subtr10_incorrect}}</dt></td>
+        </tr>
+        <tr>
+            <td>Правильных</td>
+            <td>{{ subtr10_correct }}</td>
+        </tr>
+        <tr>
+            <td>Неправильных</td>
+            <td>{{ subtr10_incorrect }}</td>
+        </tr>
+        {% endif %}
+
+        {% if equation10_correct %}
+        <tr>
+            <td><dt>Уравнения до 10</dt></td>
+            <td><dt>{{ equation10_correct|add:equation10_incorrect}}</dt></td>
+        </tr>
+        <tr>
+            <td>Правильных</td>
+            <td>{{ equation10_correct }}</td>
+        </tr>
+        <tr>
+            <td>Неправильных</td>
+            <td>{{ equation10_incorrect }}</td>
+        </tr>
+        {% endif %}
+
+        {% if multiplication_correct %}
+        <tr>
+            <td><dt>Умножение</dt></td>
+            <td><dt>{{ multiplication_correct|add:multiplication_incorrect}}</dt></td>
+        </tr>
+        <tr>
+            <td>Правильных</td>
+            <td>{{ multiplication_correct }}</td>
+        </tr>
+        <tr>
+            <td>Неправильных</td>
+            <td>{{ multiplication_incorrect }}</td>
+        </tr>
+        {% endif %}
+    </dl>
+    </table>
+</div>
+</div>
+</body>
+</html>

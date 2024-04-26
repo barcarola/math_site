@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Математический тренажер</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mathapp/style.css' %}">
+</head>
+<body>
+    <div>
+        <h2>Настройки</h2>
+
+        <form action="{% url 'settings' %}" method='post' id="form1">
+            {% csrf_token %}
+        <div class="mb-3">
+            {% for field in test_form %}
+                {{ field.label }}
+                {{ field }}
+                    {% for error in field.errors %}
+                         <p style="color:red"> {{ error }}</p>
+                    {% endfor%}
+            {% endfor %}
+            <p><input type="submit" value="Старт" class="btn btn-primary"></p>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
